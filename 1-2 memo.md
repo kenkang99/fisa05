@@ -3,6 +3,22 @@
 
 ### CS 배경지식
 
+#### 메모리(RAM)이란?
+- 주기억장치
+    - 프로그램 실행 중에는 반드시 메모리에 있어야함
+    - 메모리 어딘가에서 보조기억장치(하드웨어)에서 불러온 파일을 두고두고 꺼내쓰는 느낌
+
+#### 변수란?
+- 자료를 메모리에 저장해두고 불러오기 위해 이름을 지어주는 것
+- 주소값을 사용하여 주소기준으로 식별을 함
+    - 비트 형태로 저장되고 1바이트(8비트)마다 번호를 부여
+        - 16 진수를 많이 사용하는 이유 ?
+
+
+
+
+
+
 - 프로그래밍 언어 종류 2가지 - 저수준 언어, 고수준 언어
     - 저수준 언어 : 컴퓨터용 언어
     - 고수준 언어 : 인간용 언어
@@ -184,3 +200,130 @@ not subscriptable  <- 하나씩 가져올 수가 없다
 ㄴ 이런 형태 error에서는 list로 형변환해주면 됨
 
 dict에서의 조회는 value가 아닌 key로 하게된다
+
+del은 변수 요소별로, 변수 자체 등의 유연한 삭제가 가능하지만 pop은 단일 삭제 및 삭제요소 반환이라는 차이가 있다
+
+
+
+파이선 셉션에서 셸(Shell)에서 실행하는 방법 - ! 이용하기(ex- !pip install pandas)
+
+#### 매직커맨드(%,%%)
+
+```python
+# %, %% (매직 커맨드)
+# IPython/Jupyter에서 제공하는 특수 명령어
+# '%'는 한 줄에 대해, '%%'는 셀 전체에 대해 적용됩니다.
+# 코드 실행 환경을 제어하거나, 편리 기능을 제공합니다.
+
+
+```
+%pwd, %time 등이 존재한다 <- 사실상 %time만 유용하게 사용할듯?
+
+```python
+# 단일 매직커맨드 사용예시
+
+%time print('hello')
+
+''' 출력결과
+hello
+CPU times: user 371 µs, sys: 0 ns, total: 371 µs # cpu가 돌아간 시간
+Wall time: 319 µs # 코드가 돌아간 시간(나노세컨드)
+'''
+```
+
+```python
+# 다중 매직커맨드 사용예시
+%%time
+print('hello')
+print('hello')
+# %time과 출력에 대한 정보결과는 동일하다
+```
+
+#### 이스케이핑 문자
+\로 감싼 문자는 텍스트 데이터로 간주됨
+
+1. 원래의 기능을 하는 기호 혹은 무언가를 텍스트자체로 보여주게끔 변환해주는 기능
+
+2. 원래 문자를 특수기능을 하게끔 변환해주는 기능( ex - \t, \n 등)
+
+```python
+# 1. 원래의 기능을 하는 기호 혹은 무언가를 텍스트자체로 보여주게끔 하는 기능
+print('That\'s a dog.') 
+print("\"안녕하세요\"")
+
+'''출력결과
+That's a dog.
+"안녕하세요"
+'''
+```
+<-print("That's a dog.") 대신 사용가능하지만 보통 안 써서 코드 해석할 수 있기만 하면 됨
+
+```python
+# 2. 원래 문자를 특수기능을 하게끔 변환해주는 기능
+
+print("Hello World!\nThat's a dog\tThat's a dog")
+
+'''출력결과
+That's a dog.
+"안녕하세요"
+'''
+```
+
+
+
+
+#### 깨알지식모음
+
+##### 여러 줄의 코드를 한 줄에 작성하여 실행하기
+
+```python
+print("Hello World!"); print("That's a dog"); print("That's a dog") # 여러줄의 코드를 부득이하게 한줄에 넣을 때 ;으로 각 명령어의 마침표
+
+'''출력결과
+Hello World!
+That's a dog
+That's a dog
+'''
+```
+
+
+##### 보이는 그대로와 유사하게 출력하기
+
+```python
+
+print('''Hello World!
+That's a dog
+That's a dog''')
+
+'''출력결과
+Hello World!
+That's a dog
+That's a dog
+'''
+```
+
+##### 내장함수를 변수명으로 사용하게되는 경우 대처 <- del
+
+```python
+# 내장함수를 변수명으로 사용하여 초기화해버리면 함수로 사용할 수는 없게됨
+
+print(list())
+list=1
+print(list)
+print(list())
+
+'''출력결과
+[]
+1
+---------------------------------------------------------------------------
+TypeError                                 Traceback (most recent call last)
+/tmp/ipython-input-4-3518667268.py in <cell line: 0>()
+      3 list=1
+      4 print(list)
+----> 5 print(list())
+
+TypeError: 'int' object is not callable
+'''
+```
+
+
